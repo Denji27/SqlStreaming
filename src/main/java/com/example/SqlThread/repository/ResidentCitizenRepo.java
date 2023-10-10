@@ -23,9 +23,7 @@ public interface ResidentCitizenRepo extends JpaRepository<ResidentCitizen, Stri
     @Query(value = "SELECT count(*) FROM ResidentCitizen")
     int getCountCitizen();
 
-    @QueryHints(value ={ @QueryHint(name = HINT_FETCH_SIZE, value = "" + Integer.MIN_VALUE),
-            @QueryHint(name = HINT_CACHEABLE, value = "false"),
-            @QueryHint(name = READ_ONLY, value = "true")}
+    @QueryHints(value =@QueryHint(name = HINT_FETCH_SIZE, value = "100")
     )
     @Query(value = "select rc from ResidentCitizen rc")
     Stream<ResidentCitizen> streamAllCitizen();
